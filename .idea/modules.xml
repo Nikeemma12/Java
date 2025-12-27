@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/IdeaProjects/COS 201/COS 201.iml" filepath="$PROJECT_DIR$/IdeaProjects/COS 201/COS 201.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IdeaProjects/Data Structure and Algorithm/Data Structure and Algorithm.iml" filepath="$PROJECT_DIR$/IdeaProjects/Data Structure and Algorithm/Data Structure and Algorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Java.iml" filepath="$PROJECT_DIR$/.idea/Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IdeaProjects/PERSONAL NON-OOP PRACT/Learn non-oop.iml" filepath="$PROJECT_DIR$/IdeaProjects/PERSONAL NON-OOP PRACT/Learn non-oop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IdeaProjects/MY TUTORIAL (NON-OOP)JAVA/MY TUTORIAL JAVA.iml" filepath="$PROJECT_DIR$/IdeaProjects/MY TUTORIAL (NON-OOP)JAVA/MY TUTORIAL JAVA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IdeaProjects/OOP Projects/OOP Projects.iml" filepath="$PROJECT_DIR$/IdeaProjects/OOP Projects/OOP Projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IdeaProjects/TUTORIAL OOP/TUTORIAL OOP.iml" filepath="$PROJECT_DIR$/IdeaProjects/TUTORIAL OOP/TUTORIAL OOP.iml" />
+    </modules>
+  </component>
+</project>
