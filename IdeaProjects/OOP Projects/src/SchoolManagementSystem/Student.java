@@ -26,9 +26,13 @@ public class Student extends Person{
 
     void Menu() {
         System.out.println("1. Update Profile");
-        System.out.println("2. View all Courses Offering");
-        System.out.println("3. Logout");
-        System.out.println("4. Exit");
+        System.out.println("2. View All Courses");
+        System.out.println("3. View My Profile");
+        System.out.println("4. View Registered Courses");
+        System.out.println("5. Register Courses");
+        System.out.println("6. Drop Registered Courses");
+        System.out.println("7. Logout");
+        System.out.println("8. Exit");
     }
     void setIdStart(String idStart) {
         this.idStart = idStart;

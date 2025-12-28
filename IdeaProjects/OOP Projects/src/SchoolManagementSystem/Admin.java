@@ -35,32 +35,17 @@ public class Admin extends Person{
         System.out.println("16. Logout");
         System.out.println("17. Exit");
     }
-    //Update Admin details
-    void updateProfileName(String name) {
-            setName(name);
-    }
-    void updateProfilePassword(String password) {
-        setPassword(password);
-    }
-    void updateProfileEmail(String email) {
-        setEmail(email);
-    }
 
     //Add new Student, Courses, Teachers
     Course addCourse(String courseTitle, String courseCode, int courseUnit) {
-        Course newCourse = new Course (courseTitle, courseCode, courseUnit);
-        return newCourse;
+        return new Course (courseTitle, courseCode, courseUnit);
     }
     Student addStudent(String name, String email) {
-        Student newStudent = new Student(name, email);
-        return newStudent;
+        return new Student(name, email);
     }
     Teacher addTeacher(String name, String email) {
-        Teacher newTeacher = new Teacher(name, email);
-        return newTeacher;
+        return new Teacher(name, email);
     }
-
-
     void enrollStudentToCourse(Student student, Course course) {
         student.addCourse(course);
     }
