@@ -173,6 +173,7 @@ public class FileHandling {
                     for(int i=1; i<parts.length /*3*/; i++) {
                         if(course.getCourseCode().equals(parts[i])){
                             cours = course;
+                            assert stud != null;
                             stud.addCourse(cours);
                         }
                     }
@@ -204,7 +205,7 @@ public class FileHandling {
             String line;
             String[] parts;
             Teacher teach = null;
-            Course cours = null;
+            Course cours;
             while((line=teacherAssignedCourses.readLine())!=null){
                 parts = line.split(",");
                 String teacherID = parts[0].trim();
@@ -218,6 +219,7 @@ public class FileHandling {
                     for(int i=1; i<parts.length; i++) {
                         if(course.getCourseCode().equals(parts[i])){
                             cours = course;
+                            assert teach != null;
                             teach.addCourse(cours);
                         }
                     }

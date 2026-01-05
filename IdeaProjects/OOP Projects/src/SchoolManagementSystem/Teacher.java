@@ -23,6 +23,16 @@ public class Teacher extends Person {
         num++;
         coursesAssigned = new ArrayList<>();
     }
+
+    void Menu() {
+        System.out.println("1. Update Profile");
+        System.out.println("2. View My Profile");
+        System.out.println("3. View All Courses");
+        System.out.println("4. View Assigned Courses");
+        System.out.println("5. Logout");
+        System.out.println("6. Exit");
+    }
+
     String getDepartment() {
         return Department;
     }

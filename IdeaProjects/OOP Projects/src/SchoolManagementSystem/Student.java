@@ -65,20 +65,20 @@ public class Student extends Person{
     void setCourseList(Course course) {
         this.courseLists.add(course);
     }
-    //Add course to courselist
+    //Add course to courseList
     void addCourse(Course course) {
         setCourseList(course);
     }
     //Method to list out Course Lists of a student
     String getStudentCourseCode() {
-        StringBuilder courselist  = new StringBuilder();
+        StringBuilder courseList  = new StringBuilder();
         for (Course course : courseLists){
             String courseCode = course.getCourseCode();
-            courselist.append(courseCode);
+            courseList.append(courseCode);
             if(courseLists.size()>1 && !course.equals(courseLists.getLast())) {
-                courselist.append(",");
+                courseList.append(",");
             }
         }
-        return courselist.toString();
+        return courseList.toString();
     }
 }

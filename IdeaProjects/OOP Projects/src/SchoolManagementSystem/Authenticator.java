@@ -12,17 +12,17 @@ public class Authenticator {
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
         for(Admin admin1: admins) {
-            if(id.equals(admin1.getId()) && password.equals(admin1.getPassword()))  {
-                System.out.println("Welcome, " + admin1.getName());
-                return new ResultofLogin<>(true, admin1);
-            } else if (!id.equals(admin1.getId()) && password.equals(admin1.getPassword())) {
-                System.out.println("Id not found");
-                return new ResultofLogin<>(false, null);
-            } else if (id.equals(admin1.getId()) && !password.equals(admin1.getPassword())) {
-                System.out.println("Wrong password");
-                return new ResultofLogin<>(false, null);
+            if(id.equals(admin1.getId())){
+                if(password.equals(admin1.getPassword())) {
+                    System.out.println("Welcome, " + admin1.getName());
+                    return new ResultofLogin<>(true, admin1);
+                } else {
+                    System.out.println("Wrong password");
+                    return new ResultofLogin<>(false, null);
+                }
             }
         }
+        System.out.println("Id not found");
          return new ResultofLogin<>(false, null);
     }
     public static void SignInAdmin(ArrayList<Admin> admins) {
@@ -57,17 +57,39 @@ public class Authenticator {
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
         for(Student student1: students) {
-            if(id.equals(student1.getId()) && password.equals(student1.getPassword()))  {
-                System.out.println("Welcome, " + student1.getName());
-                return new ResultofLogin<>(true, student1);
-            } else if (!id.equals(student1.getId()) && password.equals(student1.getPassword())) {
-                System.out.println("Id not found");
-                return new ResultofLogin<>(false, null);
-            } else if (id.equals(student1.getId()) && !password.equals(student1.getPassword())) {
-                System.out.println("Wrong password");
-                return new ResultofLogin<>(false, null);
+            if(id.equals(student1.getId()))  {
+                if(password.equals(student1.getPassword())) {
+                    System.out.println("Welcome, " + student1.getName());
+                    return new ResultofLogin<>(true, student1);
+                }
+                else {
+                    System.out.println("Wrong password");
+                    return new ResultofLogin<>(false, null);
+                }
             }
         }
+        System.out.println("Id not found");
+        return new ResultofLogin<>(false, null);
+    }
+
+    public static ResultofLogin<Teacher> LoginTeacher(ArrayList<Teacher> teachers) {
+        System.out.print("Enter id: ");
+        String id = scanner.nextLine().toUpperCase().trim();
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+        for (Teacher teacher : teachers) {
+            if (id.equals(teacher.getId())) {
+                if (password.equals(teacher.getPassword())) {
+                    System.out.println("Welcome, " + teacher.getName());
+                    return new ResultofLogin<>(true, teacher);
+                } else {
+                    System.out.println("Wrong password");
+                    return new ResultofLogin<>(false, null);
+                }
+            }
+        }
+
+        System.out.println("Id not found");
         return new ResultofLogin<>(false, null);
     }
 }

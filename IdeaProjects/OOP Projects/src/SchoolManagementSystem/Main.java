@@ -622,6 +622,7 @@ public class Main {
                                                     while(!again.getSuccess()) {
                                                         again = Authenticator.LoginAdmin(admins);
                                                     }
+                                                    currentAdmin = again.getUser();
                                                 }
                                                 //Exiting entire Admin
                                                 case 17-> end = -1;
@@ -636,7 +637,155 @@ public class Main {
                             }
                         }
                     }
-                    case 2 -> {}
+                    case 2 -> {
+                        ResultofLogin<Teacher> result = Authenticator.LoginTeacher(teachers);
+                        if(result.getSuccess()) {
+                            int choice = 0;
+                            currentTeacher = result.getUser();
+                            while(choice!=6){
+                                currentTeacher.Menu();
+                                System.out.print("Pick a choice: ");
+                                choice = scanner.nextInt();
+                                scanner.nextLine();
+                                switch (choice){
+                                    //UPDATE DETAILS
+                                    case 1->{
+                                        int updateChoice = 0;
+                                        while(updateChoice!=4) {
+                                            System.out.println("1. Update name");
+                                            System.out.println("2. Update email");
+                                            System.out.println("3. Update password");
+                                            System.out.println("4. Go back");
+                                            System.out.print("Enter choice: ");
+                                            updateChoice = scanner.nextInt();
+                                            scanner.nextLine();
+                                            switch (updateChoice) {
+                                                //Updating Current Teachers name
+                                                case 1 -> {
+                                                    String name;
+                                                    System.out.print("Enter last name: ");
+                                                    String last = scanner.nextLine().trim();
+                                                    System.out.print("Enter first name: ");
+                                                    String first = scanner.nextLine().trim();
+                                                    if (!first.isEmpty() && !last.isEmpty()) {
+                                                        name = last + " " + first;
+                                                        currentTeacher.setName(name);
+                                                        FileHandling.TeacherSave(teachers);
+                                                        System.out.println("--------------");
+                                                        System.out.println("Name changed successfully");
+                                                        System.out.println("--------------");
+                                                    } else {
+                                                        System.out.println("--------------");
+                                                        System.out.println("Input can't be empty");
+                                                        System.out.println("--------------");
+                                                    }
+                                                }
+                                                //Updating Current Teachers Email
+                                                case 2-> {
+                                                    String email;
+                                                    System.out.print("Enter new email: ");
+                                                    email = scanner.nextLine().trim();
+                                                    if(email.isEmpty()){
+                                                        System.out.println("--------------");
+                                                        System.out.println("Input can't be empty");
+                                                        System.out.println("--------------");
+                                                    }
+                                                    else if(!email.contains("@") || !email.contains(".")) {
+                                                        System.out.println("--------------");
+                                                        System.out.println("Invalid email");
+                                                        System.out.println("--------------");
+                                                    } else {
+                                                        currentTeacher.setEmail(email);
+                                                        FileHandling.TeacherSave(teachers);
+                                                        System.out.println("--------------");
+                                                        System.out.println("Email changed successfully");
+                                                        System.out.println("--------------");
+                                                    }
+                                                }
+                                                //Updating Current Teachers Password
+                                                case 3-> {
+                                                    String newPassword, confirmPassword;
+                                                    System.out.print("Enter new password: ");
+                                                    newPassword = scanner.nextLine().trim();
+                                                    if(newPassword.isEmpty()) {
+                                                        System.out.println("-----------------------");
+                                                        System.out.println("Password can't be empty");
+                                                        System.out.println("-----------------------");
+                                                    } else {
+                                                        System.out.print("Confirm password: ");
+                                                        confirmPassword = scanner.nextLine().trim();
+                                                        if(!newPassword.equals(confirmPassword)) {
+                                                            System.out.println("-----------------------");
+                                                            System.out.println("Password doesn't match");
+                                                            System.out.println("-----------------------");
+                                                        } else {
+                                                            currentTeacher.setPassword(newPassword);
+                                                            System.out.println("--------------");
+                                                            System.out.println("Password changed successfully");
+                                                            System.out.println("--------------");
+                                                            FileHandling.TeacherSave(teachers);
+                                                        }
+                                                    }
+
+                                                }
+                                                //Go back to main menu
+                                                case 4 -> {
+                                                    System.out.println("--------------");
+                                                    System.out.println("Changes saved");
+                                                    System.out.println("--------------");
+                                                }
+                                                //Wrong choice
+                                                default -> {
+                                                    System.out.println("------------------");
+                                                    System.out.println("Enter valid choice");
+                                                    System.out.println("------------------");
+                                                }
+                                            }
+                                        }
+                                    }
+                                    //DISPLAY STUDENT DETAILS
+                                    case 2-> {
+                                        System.out.println("----------------------------");
+                                        System.out.println(currentTeacher.getDetails());
+                                        System.out.println("----------------------------");
+                                    }
+                                    //VIEW ALL COURSES
+                                    case 3->{
+                                        System.out.println("----------------------------");
+                                        for (Course all :courses){
+                                            System.out.println(all);
+                                        }
+                                        System.out.println("----------------------------");
+                                    }
+                                    //VIEW ASSIGNED COURSES
+                                    case 4 -> {
+                                        System.out.println("----------------------------");
+                                        if(currentTeacher.getCoursesAssigned().isEmpty()){
+                                            System.out.println("You have not been assigned to any course");
+                                        } else{
+                                            for (Course all :currentTeacher.getCoursesAssigned()){
+                                                System.out.println(all);
+                                            }
+                                        }
+                                        System.out.println("----------------------------");
+                                    }
+                                    //LOG OUT
+                                    case 5->{
+                                        ResultofLogin<Teacher> again = new ResultofLogin<>(false, null);
+                                        System.out.println("Logged out successfully");
+                                        System.out.println("Welcome, Teacher");
+                                        while(!again.getSuccess()) {
+                                                again = Authenticator.LoginTeacher(teachers);
+                                        }
+                                        currentTeacher = again.getUser();
+                                    }
+                                    //EXIT STUDENT
+                                    case 6-> System.out.println("....");
+                                    default -> System.out.println("Enter a correct choice");
+                                }
+                            }
+                        }
+                    }
                     case 3 -> {
                         ResultofLogin<Student> result = Authenticator.LoginStudent(students);
                         if(result.getSuccess()){
@@ -831,6 +980,7 @@ public class Main {
                                         while(!again.getSuccess()) {
                                             again = Authenticator.LoginStudent(students);
                                         }
+                                        currentStudent = again.getUser();
                                     }
                                     //EXIT STUDENT
                                     case 8-> System.out.println("....");
